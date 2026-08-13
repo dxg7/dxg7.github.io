@@ -2,6 +2,8 @@ const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 let W, H, particles = [];
 
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 function resize() {
   W = canvas.width = window.innerWidth;
   H = canvas.height = window.innerHeight;
@@ -17,17 +19,17 @@ function createParticle() {
   return {
     x: rand(0, W),
     y: rand(0, H),
-    r: rand(1, 2.6),
-    vx: rand(-0.25, 0.25),
-    vy: rand(-0.35, 0.15),
+    r: rand(0.6, 1.8),
+    vx: rand(-0.18, 0.18),
+    vy: rand(-0.28, 0.1),
     color: c,
-    alpha: rand(0.2, 0.7),
-    pulse: rand(0.01, 0.04),
+    alpha: rand(0.08, 0.3),
+    pulse: rand(0.005, 0.02),
   };
 }
 
 function initParticles() {
-  const count = Math.min(Math.floor(W / 14), 140);
+  const count = Math.min(Math.floor(W / 22), 80);
   particles = Array.from({ length: count }, createParticle);
 }
 
@@ -39,7 +41,7 @@ function draw() {
     p.x += p.vx;
     p.y += p.vy;
     p.alpha += p.pulse;
-    if (p.alpha > 0.75 || p.alpha < 0.15) p.pulse *= -1;
+    if (p.alpha > 0.3 || p.alpha < 0.08) p.pulse *= -1;
 
     if (p.x < -20) p.x = W + 20;
     if (p.x > W + 20) p.x = -20;
@@ -52,22 +54,6 @@ function draw() {
     ctx.fill();
   }
 
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const a = particles[i], b = particles[j];
-      const dx = a.x - b.x, dy = a.y - b.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 130) {
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = `rgba(148,163,255,${(1 - dist / 130) * 0.16})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-    }
-  }
-
   requestAnimationFrame(draw);
 }
 
@@ -76,48 +62,36 @@ window.addEventListener("resize", () => {
   initParticles();
 });
 
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
 resize();
-if (reduceMotion) {
-  initParticles();
-  ctx.clearRect(0, 0, W, H);
-} else {
-  initParticles();
-  draw();
-}
+initParticles();
+if (!reduceMotion) draw();
 
 const dot = document.querySelector(".cursor-dot");
-const ring = document.querySelector(".cursor-ring");
-let mx = 0, my = 0, rx = 0, ry = 0;
 
 window.addEventListener("mousemove", (e) => {
-  mx = e.clientX;
-  my = e.clientY;
-  dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+  dot.style.left = e.clientX + "px";
+  dot.style.top = e.clientY + "px";
 });
 
-function ringLoop() {
-  rx += (mx - rx) * 0.16;
-  ry += (my - ry) * 0.16;
-  ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-  requestAnimationFrame(ringLoop);
-}
-ringLoop();
+document.querySelectorAll(".link").forEach((link) => {
+  link.addEventListener("mousemove", (e) => {
+    const rect = link.getBoundingClientRect();
+    link.style.setProperty("--mx", e.clientX - rect.left + "px");
+    link.style.setProperty("--my", e.clientY - rect.top + "px");
+  });
 
-document.querySelectorAll("a, .link, button").forEach((el) => {
-  el.addEventListener("mouseenter", () => ring.classList.add("is-hover"));
-  el.addEventListener("mouseleave", () => ring.classList.remove("is-hover"));
+  link.addEventListener("mouseenter", () => dot.classList.add("is-hover"));
+  link.addEventListener("mouseleave", () => dot.classList.remove("is-hover"));
 });
 
 const colors = ["#8b5cf6", "#22d3ee", "#f472b6", "#fbbf24", "#34d399", "#60a5fa"];
 
 function burst(x, y) {
-  const count = 70;
+  const count = 55;
   for (let i = 0; i < count; i++) {
     const piece = document.createElement("div");
     piece.className = "confetti-piece";
-    const size = rand(5, 10);
+    const size = rand(4, 8);
     piece.style.width = size + "px";
     piece.style.height = size * rand(0.5, 1.2) + "px";
     piece.style.left = x + "px";
