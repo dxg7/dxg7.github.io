@@ -186,6 +186,20 @@ body {
   opacity: 1;
 }
 
+.player {
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--link-border);
+  background: #1a1a1e;
+  line-height: 0;
+}
+
+.player iframe {
+  display: block;
+}
+
 footer {
   margin-top: 34px;
   font-family: "JetBrains Mono", monospace;
