@@ -189,15 +189,123 @@ body {
 .player {
   margin-top: 10px;
   width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--link-bg);
   border: 1px solid var(--link-border);
-  background: #1a1a1e;
-  line-height: 0;
+  border-radius: 12px;
+  padding: 12px;
+  transition: background 0.18s ease, border-color 0.18s ease;
 }
 
-.player iframe {
+.player:hover {
+  background: var(--link-bg-hover);
+  border-color: var(--link-border);
+}
+
+.player-art {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.player-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
+  user-select: none;
+}
+
+.player-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.player-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-artist {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-progress {
+  margin-top: 7px;
+}
+
+.player-bar {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.player-bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.2s linear;
+}
+
+.player-times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.ctl {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+}
+
+.ctl:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ctl-play {
+  background: var(--accent);
+  color: #fff;
+}
+
+.ctl-play:hover {
+  background: var(--accent-2);
+  color: #0a0a12;
 }
 
 footer {

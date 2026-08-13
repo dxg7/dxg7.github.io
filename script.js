@@ -112,3 +112,79 @@ document.querySelectorAll(".link").forEach((link) => {
     burst(rect.left + rect.width / 2, rect.top + rect.height / 2);
   });
 });
+
+const audio = document.getElementById("track");
+const btnPlay = document.getElementById("btnPlay");
+const btnPrev = document.getElementById("btnPrev");
+const btnNext = document.getElementById("btnNext");
+const barFill = document.getElementById("barFill");
+const barEl = document.querySelector(".player-bar");
+const timeCur = document.getElementById("timeCur");
+const timeDur = document.getElementById("timeDur");
+const icoPlay = btnPlay.querySelector(".ico-play");
+const icoPause = btnPlay.querySelector(".ico-pause");
+
+function fmt(t) {
+  if (isNaN(t) || !isFinite(t)) return "0:00";
+  const m = Math.floor(t / 60);
+  const s = Math.floor(t % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+function togglePlay() {
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
+
+function setPlaying(playing) {
+  icoPlay.style.display = playing ? "none" : "";
+  icoPause.style.display = playing ? "" : "none";
+}
+
+audio.addEventListener("loadedmetadata", () => {
+  timeDur.textContent = fmt(audio.duration);
+});
+
+audio.addEventListener("timeupdate", () => {
+  timeCur.textContent = fmt(audio.currentTime);
+  barFill.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+});
+
+audio.addEventListener("play", () => setPlaying(true));
+audio.addEventListener("pause", () => setPlaying(false));
+audio.addEventListener("ended", () => {
+  audio.currentTime = 0;
+  setPlaying(false);
+});
+
+btnPlay.addEventListener("click", togglePlay);
+
+btnNext.addEventListener("click", () => {
+  audio.currentTime = 0;
+  audio.play();
+});
+
+btnPrev.addEventListener("click", () => {
+  if (audio.currentTime > 3) {
+    audio.currentTime = 0;
+  } else {
+    audio.currentTime = 0;
+    audio.play();
+  }
+});
+
+barEl.addEventListener("click", (e) => {
+  const rect = barEl.getBoundingClientRect();
+  const ratio = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = ratio * audio.duration;
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space" && e.target.tagName !== "INPUT") {
+    e.preventDefault();
+    togglePlay();
+  }
+});
