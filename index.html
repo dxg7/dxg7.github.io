@@ -63,40 +63,55 @@
     </nav>
 
     <div class="player">
-      <audio id="track" src="music.mp3" preload="metadata"></audio>
+      <audio id="track" preload="metadata"></audio>
 
       <div class="player-inner">
-        <div class="player-art">
-          <img class="player-art-img" src="cover.jpg" alt="slim body bitch cover" draggable="false" />
-        </div>
+        <div class="player-top">
+          <div class="player-art">
+            <svg class="art-fallback" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+            <img class="player-art-img" alt="" draggable="false" />
+          </div>
 
-        <div class="player-info">
-          <div class="player-title">slim body bitch</div>
-          <div class="player-artist">predayed</div>
-          <div class="player-progress">
-            <div class="player-bar">
-              <div class="player-bar-fill" id="barFill"></div>
-            </div>
-            <div class="player-times">
-              <span id="timeCur">0:00</span>
-              <span id="timeDur">0:00</span>
-            </div>
+          <div class="player-info">
+            <div class="player-title">slim body bitch</div>
+            <div class="player-artist">predayed</div>
+          </div>
+
+          <div class="player-controls">
+            <button class="ctl" id="btnPrev" title="Previous">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6 5h2v14H6V5zm12 0v14L9 12l9-7z"/></svg>
+            </button>
+            <button class="ctl ctl-play" id="btnPlay" title="Play">
+              <svg class="ico-play" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              <svg class="ico-pause" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" style="display:none"><path fill="currentColor" d="M6 5h4v14H6V5zm8 0h4v14h-4V5z"/></svg>
+            </button>
+            <button class="ctl" id="btnNext" title="Next">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16 5h2v14h-2V5zM6 5v14l9-7-9-7z"/></svg>
+            </button>
+            <button class="ctl" id="btnList" title="Playlist">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 6h13v2H3V6zm0 5h13v2H3v-2zm0 5h9v2H3v-2zm14-10h4v2h-4V6zm0 5h4v9h-4v-9zm2 2v5h.01V13H19z"/></svg>
+            </button>
           </div>
         </div>
 
-        <div class="player-controls">
-          <button class="ctl" id="btnPrev" title="Previous">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6 5h2v14H6V5zm12 0v14L9 12l9-7z"/></svg>
-          </button>
-          <button class="ctl ctl-play" id="btnPlay" title="Play">
-            <svg class="ico-play" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-            <svg class="ico-pause" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="display:none"><path fill="currentColor" d="M6 5h4v14H6V5zm8 0h4v14h-4V5z"/></svg>
-          </button>
-          <button class="ctl" id="btnNext" title="Next">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16 5h2v14h-2V5zM6 5v14l9-7-9-7z"/></svg>
-          </button>
+        <div class="player-bottom">
+          <span class="player-time" id="timeCur">0:00</span>
+          <div class="player-bar">
+            <div class="player-bar-fill" id="barFill"></div>
+          </div>
+          <span class="player-time" id="timeDur">0:00</span>
+
+          <div class="player-volume">
+            <button class="ctl" id="btnVol" title="Mute">
+              <svg class="ico-vol-on" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+              <svg class="ico-vol-off" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" style="display:none"><path fill="currentColor" d="M16.5 12a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM3 9v6h4l5 5V4L7 9H3zm16.5 3c0-3.17-2.11-5.85-5-6.71v2.06c1.89.86 3 3.54 3 4.65s-1.11 3.79-3 4.65v2.06c2.89-.86 5-3.54 5-6.71z"/></svg>
+            </button>
+            <input class="vol-slider" id="volSlider" type="range" min="0" max="100" value="100" aria-label="Volume" />
+          </div>
         </div>
       </div>
+
+      <div class="playlist" id="playlist" hidden></div>
     </div>
 
     <footer>
