@@ -284,7 +284,7 @@ const FAKE_VIEWS = 10;
 async function loadViews() {
   let base = 0;
   try {
-    const res = await fetch("https://api.countapi.xyz/hit/dxg7/profile-views");
+    const res = await fetch("https://countapi.mileshilliard.com/api/v1/hit/dxg7_profile_views");
     const data = await res.json();
     base = parseInt(data.value, 10) || 0;
   } catch (err) {
