@@ -68,7 +68,7 @@ body {
   z-index: 1;
   max-width: 520px;
   margin: 0 auto;
-  padding: 64px 20px 130px;
+  padding: 64px 20px 116px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -188,35 +188,33 @@ body {
 
 .player {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 400px;
   z-index: 50;
   display: flex;
   justify-content: center;
-  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  padding: 8px 12px;
   background: rgba(15, 15, 18, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-top: 1px solid var(--link-border);
-  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--link-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 .player-inner {
   width: 100%;
-  max-width: 488px;
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.player:hover .player-inner {
-  background: transparent;
+  gap: 10px;
 }
 
 .player-art {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   border-radius: 8px;
   display: grid;
@@ -240,7 +238,7 @@ body {
 }
 
 .player-title {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text);
   white-space: nowrap;
@@ -249,7 +247,7 @@ body {
 }
 
 .player-artist {
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--text-dim);
   margin-top: 2px;
   white-space: nowrap;
@@ -258,11 +256,11 @@ body {
 }
 
 .player-progress {
-  margin-top: 7px;
+  margin-top: 6px;
 }
 
 .player-bar {
-  height: 4px;
+  height: 3px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
@@ -280,9 +278,9 @@ body {
 .player-times {
   display: flex;
   justify-content: space-between;
-  margin-top: 4px;
+  margin-top: 3px;
   font-family: "JetBrains Mono", monospace;
-  font-size: 10px;
+  font-size: 9.5px;
   color: var(--text-dim);
 }
 
@@ -296,8 +294,8 @@ body {
 .ctl {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   border: none;
   background: transparent;
   color: var(--text-dim);
@@ -314,6 +312,8 @@ body {
 .ctl-play {
   background: var(--accent);
   color: #fff;
+  width: 32px;
+  height: 32px;
 }
 
 .ctl-play:hover {
