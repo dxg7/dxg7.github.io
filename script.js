@@ -14,7 +14,7 @@ function rand(min, max) {
 }
 
 function createParticle() {
-  const colors = ["139,92,246", "34,211,238", "244,114,182"];
+  const colors = ["139,92,246", "167,139,250", "124,58,237"];
   const c = colors[Math.floor(Math.random() * colors.length)];
   return {
     x: rand(0, W),
@@ -84,7 +84,7 @@ document.querySelectorAll(".link").forEach((link) => {
   link.addEventListener("mouseleave", () => dot.classList.remove("is-hover"));
 });
 
-const colors = ["#8b5cf6", "#22d3ee", "#f472b6", "#fbbf24", "#34d399", "#60a5fa"];
+const colors = ["#8b5cf6", "#a78bfa", "#7c3aed", "#6d28d9", "#c4b5fd", "#ede9fe"];
 
 function burst(x, y) {
   const count = 55;
