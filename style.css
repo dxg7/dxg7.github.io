@@ -150,14 +150,18 @@ body {
 }
 
 .meta .made-by {
-  color: inherit;
+  color: var(--accent-2);
   text-decoration: none;
   border-bottom: 1px dashed currentColor;
   transition: color 0.2s ease;
 }
 
-.meta .made-by:hover {
+.meta .made-by:visited {
   color: var(--accent-2);
+}
+
+.meta .made-by:hover {
+  color: var(--accent);
 }
 
 .links {
