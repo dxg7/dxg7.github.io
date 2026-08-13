@@ -102,20 +102,6 @@ body {
   line-height: 1.2;
 }
 
-.badge-pro {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  padding: 3px 8px;
-  border-radius: 6px;
-  color: #111;
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  box-shadow: 0 0 16px rgba(251, 191, 36, 0.45);
-  cursor: help;
-  transform: translateY(-1px);
-}
-
 .meta {
   margin-top: 12px;
   display: flex;
