@@ -277,3 +277,21 @@ document.addEventListener("keydown", (e) => {
 });
 
 loadTrack(0, false);
+
+const viewsEl = document.getElementById("viewsCount");
+const FAKE_VIEWS = 10;
+
+async function loadViews() {
+  let base = 0;
+  try {
+    const res = await fetch("https://api.countapi.xyz/hit/dxg7/profile-views");
+    const data = await res.json();
+    base = parseInt(data.value, 10) || 0;
+  } catch (err) {
+    base = parseInt(localStorage.getItem("viewsFallback") || "0", 10) + 1;
+    localStorage.setItem("viewsFallback", String(base));
+  }
+  viewsEl.textContent = (base + FAKE_VIEWS).toLocaleString("en-US");
+}
+
+loadViews();
