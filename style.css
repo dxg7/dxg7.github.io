@@ -235,7 +235,13 @@ body {
   border: 1px solid var(--link-border);
   border-radius: 16px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
   animation: playerIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s backwards;
+}
+
+.player:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.15);
 }
 
 .player-inner {
@@ -249,6 +255,10 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.player-top.track-change {
+  animation: trackSwap 0.35s ease;
 }
 
 .player-art {
@@ -406,6 +416,10 @@ body {
   color: #0a0a12;
 }
 
+.ctl:active {
+  animation: pressPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .player-volume {
   display: flex;
   align-items: center;
@@ -457,6 +471,8 @@ body {
   max-height: 230px;
   overflow-y: auto;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  animation: playlistIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: bottom center;
 }
 
 .playlist-item {
@@ -467,6 +483,39 @@ body {
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.15s ease;
+  animation: itemIn 0.3s ease both;
+}
+
+.playlist-item:nth-child(2) {
+  animation-delay: 0.04s;
+}
+
+.playlist-item:nth-child(3) {
+  animation-delay: 0.08s;
+}
+
+.playlist-item:nth-child(4) {
+  animation-delay: 0.12s;
+}
+
+.playlist-item:nth-child(5) {
+  animation-delay: 0.16s;
+}
+
+.playlist-item:nth-child(6) {
+  animation-delay: 0.2s;
+}
+
+.playlist-item:nth-child(7) {
+  animation-delay: 0.24s;
+}
+
+.playlist-item:nth-child(8) {
+  animation-delay: 0.28s;
+}
+
+.playlist-item:nth-child(n + 9) {
+  animation-delay: 0.32s;
 }
 
 .playlist-item:hover {
@@ -614,6 +663,51 @@ footer .fw {
   }
   50% {
     transform: scaleY(1);
+  }
+}
+
+@keyframes playlistIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes itemIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pressPop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.82);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes trackSwap {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

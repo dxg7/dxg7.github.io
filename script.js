@@ -141,6 +141,7 @@ const artImg = document.querySelector(".player-art-img");
 const artFallback = document.querySelector(".art-fallback");
 const volSlider = document.getElementById("volSlider");
 const playlistEl = document.getElementById("playlist");
+const playerTop = document.querySelector(".player-top");
 
 function fmt(t) {
   if (isNaN(t) || !isFinite(t)) return "0:00";
@@ -189,6 +190,9 @@ function loadTrack(i, autoplay) {
   barFill.style.width = "0%";
   if (autoplay) audio.play();
   renderPlaylist();
+  playerTop.classList.remove("track-change");
+  void playerTop.offsetWidth;
+  playerTop.classList.add("track-change");
 }
 
 function renderPlaylist() {
