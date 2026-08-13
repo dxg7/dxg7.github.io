@@ -252,6 +252,7 @@ body {
 }
 
 .player-art {
+  position: relative;
   width: 44px;
   height: 44px;
   flex-shrink: 0;
@@ -269,6 +270,48 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.eq {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  display: none;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.player.playing .eq {
+  display: flex;
+}
+
+.eq span {
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  animation: eqBounce 0.9s ease-in-out infinite;
+}
+
+.eq span:nth-child(1) {
+  height: 5px;
+}
+
+.eq span:nth-child(2) {
+  height: 9px;
+  animation-delay: 0.2s;
+}
+
+.eq span:nth-child(3) {
+  height: 6px;
+  animation-delay: 0.4s;
+}
+
+.player.playing .ctl-play {
+  animation: playPulse 2s ease-out infinite;
 }
 
 .player-info {
@@ -562,6 +605,27 @@ footer .fw {
   }
   100% {
     transform: scale(1.1);
+  }
+}
+
+@keyframes eqBounce {
+  0%, 100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes playPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
   }
 }
 

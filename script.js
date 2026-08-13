@@ -121,6 +121,7 @@ const PLAYLIST = [
 let current = 0;
 
 const audio = document.getElementById("track");
+const playerEl = document.querySelector(".player");
 const btnPlay = document.getElementById("btnPlay");
 const btnPrev = document.getElementById("btnPrev");
 const btnNext = document.getElementById("btnNext");
@@ -159,6 +160,7 @@ function togglePlay() {
 function setPlaying(playing) {
   icoPlay.style.display = playing ? "none" : "";
   icoPause.style.display = playing ? "" : "none";
+  playerEl.classList.toggle("playing", playing);
 }
 
 function updateVolIcon() {
