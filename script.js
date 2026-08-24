@@ -115,8 +115,8 @@ document.querySelectorAll(".link").forEach((link) => {
 
 const PLAYLIST = [
   { title: "slim body bitch", artist: "predayed", src: "music.mp3", cover: "cover.jpg" },
-  // ADD MORE SONGS HERE, e.g.:
-  // { title: "Song name", artist: "Artist", src: "file.mp3", cover: "art.jpg" },
+  { title: "BodyPartz", artist: "Luci4", src: "music2.mp3", cover: "music2.jpg" },
+  { title: "RAGING WOLF", artist: "sementary", src: "music3.mp3", cover: "music3.jpg" },
 ];
 let current = 0;
 
