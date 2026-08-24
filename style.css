@@ -93,6 +93,10 @@ body {
   animation-delay: 0.2s;
 }
 
+.profile > .bio {
+  animation-delay: 0.24s;
+}
+
 .profile > .links {
   animation-delay: 0.28s;
 }
@@ -161,6 +165,26 @@ body {
 }
 
 .meta .made-by:hover {
+  color: var(--accent);
+}
+
+.bio {
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.bio a {
+  color: var(--accent-2);
+  text-decoration: none;
+  border-bottom: 1px dashed currentColor;
+  transition: color 0.2s ease;
+}
+
+.bio a:hover {
   color: var(--accent);
 }
 
